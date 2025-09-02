@@ -1,0 +1,19 @@
+meta:
+  environment: python
+  toolchain:
+    name: pip
+    version: 3.8
+
+build:
+  requirementsPath: requirements.txt
+  buildCommand: |
+    pip install -r requirements.txt
+
+run:
+  command: python app.py  # Используйте command вместо scriptName
+  workingDir: /app       # Явно укажите рабочую директорию
+  persistenceMount: /data
+  containerPort: 80
+  env:
+    - name: PYTHONUNBUFFERED
+      value: "1"
