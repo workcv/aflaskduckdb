@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Movies in Database</h1>
+        
+        <!-- Back button -->
+        <div class="actions">
+            <a href="{{ url_for('index') }}" class="btn">Back to Add Movie</a>
+        </div>
+
+        <!-- Movies Table -->
+        {% if movies %}
+            <table class="movies-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Year</th>
+                        <th>Title</th>
+                        <th>Added On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movie in movies %}
+                    <tr>
+                        <td>{{ movie.id }}</td>
+                        <td>{{ movie.year }}</td>
+                        <td>{{ movie.title }}</td>
+                        <td>{{ movie.created_at }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-data">No movies found in the database.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
